@@ -7,7 +7,7 @@ Generate `n` numbers of Image thumbnails of a video file.
 
 This package can be used with any `JS` framework or in vanila js.
 
-<!-- [![NPM](https://nodei.co/npm/image-thumbnail.png)](https://nodei.co/npm/image-thumbnail/) -->
+[![NPM](https://nodei.co/npm/@rajesh896/video-thumbnails-generator.png)](https://nodei.co/npm/@rajesh896/video-thumbnails-generator/)
 
 ## Purpose?
 This module will generate n numbers of image thumbnails of a given video file.
