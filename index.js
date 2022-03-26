@@ -48,7 +48,7 @@ export const generateVideoThumbnails = async (videoFile, numberOfThumbnails) => 
             // console.log('fractions', fractions)
             await Promise.all(promiseArray).then((res) => {
                 res.forEach((res) => {
-                    console.log('res', res.slice(0,8))
+                    // console.log('res', res.slice(0,8))
                     thumbnail.push(res);
                 });
                 // console.log('thumbnail', thumbnail)
