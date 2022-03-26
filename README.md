@@ -15,7 +15,7 @@ This module will generate n numbers of image thumbnails of a given video file.
 By default the thumbnail's file format will be the `base64`.
 
 ## Usage
-### `generateVideoThumbnails(`selectedFile`, `numberOfThumbnails`)`
+### `generateVideoThumbnails(selectedFile, numberOfThumbnails)`
 
 #### Async/Await (Typescript & ES7)
 ```js
