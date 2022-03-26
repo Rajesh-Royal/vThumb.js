@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="/index.js"></script>
+    <script src="./index.js"></script>
 </head>
 
 <body style="padding-bottom: 100px;">
@@ -60,7 +60,7 @@
                 selectedFile = e.target.files[0];
 
                 var source = document.createElement('source');
-                import("/index.js").then((res) => {
+                import("./index.js").then((res) => {
                     res.importFileandPreview(e.target.files[0]).then((url) => {
 
                         source.setAttribute('src', url);
@@ -87,7 +87,7 @@
         thumbButton.addEventListener("click", function () {
             thumbnaislWrapper.innerHTML = "";
             loader.style.display = "block";
-            import("/index.js").then((res) => {
+            import("./index.js").then((res) => {
                 res.generateVideoThumbnails(selectedFile, parseInt(numberInput.value)).then((thumbArray) => {
                     let thumbnailsImg = thumbArray.map((item) => {
                         let img = document.createElement('img');
