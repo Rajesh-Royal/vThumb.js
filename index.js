@@ -51,7 +51,7 @@ export const generateVideoThumbnails = async (videoFile, numberOfThumbnails) => 
                     console.log('res', res.slice(0,8))
                     thumbnail.push(res);
                 });
-                console.log('thumbnail', thumbnail)
+                // console.log('thumbnail', thumbnail)
                 resolve(thumbnail);
             }).catch((err) => {
                 console.error(err)
