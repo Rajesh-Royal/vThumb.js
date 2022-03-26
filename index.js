@@ -37,17 +37,28 @@ export const generateVideoThumbnails = async (videoFile, numberOfThumbnails) => 
             // ex if time is 10 and numOfthumbnails is 4 then result will be -> 0, 2.5, 5, 7.5 ,10
             // we will use this timestamp to take snapshots
             for (let i = 0; i <= duration; i += duration / numberOfThumbnails) {
-                fractions.push(i);
+                fractions.push(Math.floor(i));
             }
-            await Promise.all(
-                fractions.map((time) => {
-                    return getVideoThumbnail(videoFile, time).then((res) => {
-                        thumbnail.push(res);
-                    });
-                })
-            ).then((res) => {
+            // the array of promises
+            let promiseArray = fractions.map((time) => {
+                return getVideoThumbnail(videoFile, time)
+            })
+            // console.log('promiseArray', promiseArray)
+            // console.log('duration', duration)
+            // console.log('fractions', fractions)
+            await Promise.all(promiseArray).then((res) => {
+                res.forEach((res) => {
+                    console.log('res', res.slice(0,8))
+                    thumbnail.push(res);
+                });
+                console.log('thumbnail', thumbnail)
                 resolve(thumbnail);
-            });
+            }).catch((err) => {
+                console.error(err)
+            }).finally((res) => {
+                console.log(res);
+                resolve(thumbnail);
+            })
         });
         reject("something went wront");
     });
