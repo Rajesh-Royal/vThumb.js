@@ -8,7 +8,11 @@ Generate `n` numbers of Image thumbnails of a video file.
 <br/>
 
 
-https://user-images.githubusercontent.com/24524924/160227784-6a43fd2b-41e4-49fb-a826-5e08c4a0357b.mp4
+
+
+https://user-images.githubusercontent.com/24524924/160228836-547316dc-9ec0-4eca-aed1-09127db5de69.mp4
+
+
 
 
 This package can be used with any `JS` framework or in vanila js.
