@@ -4,6 +4,11 @@
         "sourceMap": false,
         "noImplicitAny": false,
         "module": "commonjs",
-        "target": "es2015"
+        "target": "es2015",
+        "lib": [
+            "es2016",
+            "ES2015",
+            "dom"
+        ],
     },
 }
