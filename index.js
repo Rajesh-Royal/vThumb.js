@@ -60,9 +60,16 @@ export const generateVideoThumbnails = async (videoFile, numberOfThumbnails) => 
                 resolve(thumbnail);
             })
         });
-        reject("something went wront");
+        reject("something went wrong");
     });
 };
+
+/**
+ * 
+ * @param {File} file 
+ * @param {number} videoTimeInSeconds 
+ * @returns string // base64Image
+ */
 
 const getVideoThumbnail = (file, videoTimeInSeconds) => {
     return new Promise((resolve, reject) => {

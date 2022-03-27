@@ -7,6 +7,8 @@ Generate `n` numbers of Image thumbnails of a video file.
 > ## [!Live Demo](https://rajesh-royal.github.io/video-thumbnails-generator/)
 <br/>
 
+> ### [code sandbox example](https://codesandbox.io/s/generate-video-thumbnails-3qtubg)
+
 
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@rajesh896/video-thumbnails-generator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "This package will generate n numbers of thumbnails at different position in a given video file.",
   "main": "index.js",
   "scripts": {
