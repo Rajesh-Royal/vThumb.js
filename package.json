@@ -1,8 +1,9 @@
 {
   "name": "@rajesh896/video-thumbnails-generator",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "This package will generate n numbers of thumbnails at different position in a given video file.",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "build:npm": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"

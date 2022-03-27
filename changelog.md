@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [2.1.2] - 2022-03-27
+### changed
+- package.json' main file.
+## [2.1.2] - 2022-03-27
 ### Added
 - Changelog file added.
 ## [2.1.1] - 2022-03-27
