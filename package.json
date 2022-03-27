@@ -4,7 +4,7 @@
   "description": "This package will generate n numbers of thumbnails at different position in a given video file.",
   "main": "index.js",
   "scripts": {
-    "build:npm": "tsc -p tsconfig.json",
+    "build:npm": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
