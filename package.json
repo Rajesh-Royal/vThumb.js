@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/Rajesh-Royal/video-thumbnails-generator/issues"
   },
-  "homepage": "https://github.com/Rajesh-Royal/video-thumbnails-generator#readme"
+  "homepage": "https://github.com/Rajesh-Royal/video-thumbnails-generator#readme",
+  "dependencies": {
+    "@rajesh896/video-thumbnails-generator": "^2.1.2"
+  }
 }
