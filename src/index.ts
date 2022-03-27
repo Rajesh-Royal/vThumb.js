@@ -1,5 +1,18 @@
-// convert image to object part instead of base64 for better performance
-// https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
+/**
+ * @description
+ * Convert an Asset File to object URI for better performance
+ * - A user can use this url as a resource url
+ *      - For example it can be used as src of image, video tag.
+ * 
+ * Refer to this link for more detailed information
+ * https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
+ * 
+ * @param {File} file  The video file
+ * @param {boolean} revoke If true the object uri will be removed after its creation
+ * @returns {string} window object url ex. https://blob:video58699
+ * 
+ */
+
 export const importFileandPreview = (file: File, revoke?: boolean): Promise<string> => {
     return new Promise((resolve, reject) => {
         window.URL = window.URL || window.webkitURL;
@@ -16,15 +29,15 @@ export const importFileandPreview = (file: File, revoke?: boolean): Promise<stri
 
 
 /**
- *
- * @param videoFile {FIle} // the video file
- * @param numberOfThumbnails {number} //number of thumbnails you want to generate
- * @returns {string[]} // an array of base64 thumbnails images
- *
- * @abstract
+ * @description
  * Idea taken from - https://codepen.io/aertmann/pen/mrVaPx
  * The original functionality of getVideoThumbnail() function is customized as per working code
  * If it didn't work in future then replace it with about links working example
+ *
+ * @param {File} videoFile The video file
+ * @param {number} numberOfThumbnails Number of thumbnails you want to generate
+ * @returns {string[]} An array of `base64` images
+ *
  */
 export const generateVideoThumbnails = async (videoFile: File, numberOfThumbnails: number): Promise<string[]> => {
     let thumbnail: string[] = [];
@@ -52,6 +65,17 @@ export const generateVideoThumbnails = async (videoFile: File, numberOfThumbnail
     });
 };
 
+/**
+ * @description
+ * This function takes an VideoFile and Timeframe as an Input and returns the `base64` image of that particular timeFrame of video.
+ * - It create video element and play it at the given time then,
+ * - Create an svg element and draws the current frame of video on to svg.
+ * - This svg then get converted to dataURI and sent as response.
+ * 
+ * @param {File} file The video file
+ * @param {number} videoTimeInSeconds Timeframe of video [at this particular time the thumbnail will be generated]
+ * @returns {string} Returns an Array of `base64` Images
+ */
 const getVideoThumbnail = (file: File, videoTimeInSeconds: number): Promise<string> => {
     return new Promise((resolve, reject) => {
         if (file.type.match("video")) {
@@ -98,8 +122,8 @@ const getVideoThumbnail = (file: File, videoTimeInSeconds: number): Promise<stri
 
 /**
  *
- * @param videoFile {File}
- * @returns {number} the duration of video in seconds
+ * @param {File} videoFile The video file
+ * @returns {number} The duration of the video in seconds
  */
 export const getVideoDuration = (videoFile: File): Promise<number> => {
     return new Promise((resolve, reject) => {
