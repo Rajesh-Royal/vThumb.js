@@ -1,0 +1,33 @@
+{
+  "name": "@rajesh896/video-thumbnails-generator",
+  "version": "2.3.9",
+  "description": "This package will generate n numbers of thumbnails at different position in a given video file.",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build:npm": "tsc",
+    "minify:js": "uglifyjs ./lib/index.js --output ./lib/index.js",
+    "copy:minified:src": "uglifyjs ./lib/index.js --output ./example/src/components/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajesh-Royal/vThumb.js.git"
+  },
+  "keywords": [
+    "video",
+    "thumbnails",
+    "reactjs",
+    "typescript",
+    "javascript"
+  ],
+  "author": "Rajesh-Royal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rajesh-Royal/vThumb.js/issues"
+  },
+  "homepage": "https://vthumb.netlify.app/",
+  "devDependencies": {
+    "uglify-js": "^3.15.4"
+  }
+}

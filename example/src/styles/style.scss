@@ -1,0 +1,229 @@
+// poppins font
+// @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
+
+// global variables
+$body-bg: #282c34;
+$primary-color: #f71137;
+$white: white;
+
+body,
+html {
+    padding: 0px;
+    margin: 0px;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+
+.App {
+    font-family: "Nunito", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+        sans-serif;
+    background-color: $body-bg;
+    min-height: 100vh;
+    width: 100%;
+    color: $white;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .app-header {
+        font-size: calc(60px + 2vmin);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120px;
+        img {
+            max-width: 100px;
+        }
+    }
+
+    .action-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 10px;
+        .options {
+            p {
+                font-weight: 700;
+            }
+            .buttons-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+                max-width: 400px;
+                flex-wrap: wrap;
+                margin: auto;
+
+                button {
+                    margin: 10px;
+                    font-size: 18px;
+                    background: $primary-color;
+                    color: white;
+                    border: 1px solid $primary-color;
+                    border-radius: 2px;
+                    padding: 10px 60px;
+                    cursor: pointer;
+                    &:hover {
+                        filter: brightness(0.8);
+                    }
+                }
+            }
+        }
+
+        .fromfile,
+        .fromUrl {
+            .video {
+                margin: auto;
+                margin-bottom: 30px;
+                max-width: 800px;
+                max-height: 270px;
+                video {
+                    max-width: 800px;
+                    height: 270px;
+                }
+            }
+            .formgroup {
+                max-width: 800px;
+                margin: auto;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                input[type="file"] {
+                    border: 1px dashed whitesmoke;
+                    padding: 5px;
+                    font-size: 16px;
+                    width: 40%;
+                }
+                input[type="url"] {
+                    border: 1px dashed whitesmoke;
+                    background-color: transparent;
+                    color: white;
+                    padding: 5px;
+                    font-size: 16px;
+                    width: 40%;
+
+                    &:focus {
+                        outline: none;
+                    }
+                    &::placeholder {
+                        color: white;
+                    }
+                }
+                input[type="number"] {
+                    width: 40%;
+                    border: 1px dashed whitesmoke;
+                    padding: 5px;
+                    font-size: 16px;
+                    height: 26px;
+                    background-color: transparent;
+                    color: $white;
+                    &:focus {
+                        outline: none;
+                    }
+                    &::placeholder,
+                    &::-webkit-input-placeholder,
+                    &:-ms-input-placeholder,
+                    &:-moz-placeholder {
+                        color: whitesmoke;
+                    }
+                }
+                button {
+                    margin: 0;
+                    margin-top: 20px;
+                    width: 100%;
+                    &:disabled {
+                        filter: brightness(0.5);
+                        cursor: not-allowed;
+                    }
+                }
+            }
+        }
+
+        .thumbnails-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+
+            img:not(.no-border) {
+                padding: 5px;
+                margin: 15px;
+                border: 1px dashed $primary-color;
+                border-radius: 5px;
+                border-radius: 5px;
+                cursor: pointer;
+                &.active {
+                    border-width: 3px;
+                }
+            }
+        }
+    }
+}
+
+button {
+    margin: 10px;
+    font-size: 18px;
+    background: $primary-color;
+    color: white;
+    border: 1px solid $primary-color;
+    border-radius: 2px;
+    padding: 10px 60px;
+    cursor: pointer;
+    &:hover {
+        filter: brightness(0.8);
+    }
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+.width-100 {
+    width: 100%;
+}
+.text-center {
+    text-align: center;
+}
+
+footer {
+    margin-top: 80px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    a {
+        color: $primary-color !important;
+    }
+    div {
+        margin: 10px;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888d97;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $primary-color;
+}

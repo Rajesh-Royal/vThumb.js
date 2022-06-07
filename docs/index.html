@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./index.js"></script>
+</head>
+
+<body style="padding-bottom: 100px;">
+    <div id="selectbuttons">
+        <button id="filebtn">From File</button>
+        <button id="urlbtn">From Url</button>
+    </div>
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+        <video poster="" style="max-width: 600px; max-height: 400px; transform: scale(0); transition: all 0.3s;"
+            controls id="video">
+            Your browser does not support the video tag.
+        </video>
+        <div style="display: none; margin-top: 25px;" id="fileControls">
+            <input type="file" id="inputfile" accept="video/*" />
+            <input type="url" id="videoUrl" placeholder="Enter the url of video" style="width: 300px; height: 30px" />
+            <div id="numberWrapper" style="display: none;">
+                <label for="numberofthumbnails" style="margin-left: 15px;">Enter number of thumbnails to generate
+                </label>
+                <input type="number" id="numberofthumbnails" />
+            </div>
+        </div>
+        <div style="margin-top: 25px; display: none;" id="buttonWrapper">
+            <button id="generatethumbnails">Generate Thumbnails</button>
+        </div>
+        <div style="margin-top: 25px; display: none;" id="urlbuttonwrapper">
+            <button id="generatethumbnails">Generate Thumbnails from url</button>
+        </div>
+    </div>
+    <div id="loader" style="display: none; text-align: center;">
+        <img src="https://i.giphy.com/media/l3nWhI38IWDofyDrW/giphy.webp" alt="">
+    </div>
+    <div id="thumbnails"
+        style="display: flex; justify-content: center;flex-wrap: wrap; align-items: center; transition: all 0.3s;">
+
+    </div>
+
+    <div class="note"
+        style="position: fixed; bottom: 0px; right: 0px; font-weight: bold; color: black; background: whitesmoke; border: 1px solid black; border-radius: 5px; padding: 5px;">
+        <ul>
+            <li>Not ready for production.</li>
+            <li>Play with numbers sometimes promises behave badly [in-progress]</li>
+            <li>You have to reload the page everytime you want to select the video [badly coded html/js]</li>
+        </ul>
+    </div>
+
+    <script>
+        let video = document.getElementById("video");
+        let inputFile = document.getElementById("inputfile");
+        let videoUrl = document.getElementById("videoUrl");
+        let numberInput = document.getElementById("numberofthumbnails");
+        let numberWrapper = document.getElementById("numberWrapper");
+        let fileControls = document.getElementById("fileControls");
+        let buttonWrapper = document.getElementById("buttonWrapper");
+        let urlbuttonwrapper = document.getElementById("urlbuttonwrapper");
+        let thumbButton = document.getElementById("generatethumbnails");
+        let thumbnaislWrapper = document.getElementById("thumbnails");
+        let loader = document.getElementById("loader");
+        let selectbuttons = document.getElementById("selectbuttons");
+        let urlbtn = document.getElementById("urlbtn");
+        let filebtn = document.getElementById("filebtn");
+        let selectedFile = "";
+
+        urlbtn.addEventListener("click", function () {
+            selectbuttons.style.display = "none";
+            inputFile.style.display = "none";
+            fileControls.style.display = "flex";
+            numberWrapper.style.display = "block"
+            urlbuttonwrapper.style.display = "block"
+
+        });
+        filebtn.addEventListener("click", function () {
+            selectbuttons.style.display = "none";
+            fileControls.style.display = "flex";
+            videoUrl.style.display = "none"
+        });
+
+        inputFile.addEventListener("change", function (e) {
+            if (e.target.files?.length) {
+                selectedFile = e.target.files[0];
+
+                var source = document.createElement('source');
+                import("./index.js").then((res) => {
+                    res.importFileandPreview(e.target.files[0]).then((url) => {
+
+                        source.setAttribute('src', url);
+                        source.setAttribute('type', e.target.files[0]?.type);
+
+                        res.generateVideoThumbnails(e.target.files[0], 1).then((thumbnails) => {
+                            // video operations
+                            // video.setAttribute("poster", thumbnails[1])
+                            // video.setAttribute("src", url)
+                            video.style.width = "auto";
+                            video.style.height = "auto"
+                            video.style.transform = "scale(1)"
+                        })
+                        // numberInput
+                        numberWrapper.style.display = "block";
+                        buttonWrapper.style.display = "block";
+                        video.style.transform = "scale(1)"
+                        video.innerHTML = "";
+                        video.appendChild(source);
+                    });
+                })
+            }
+        });
+
+        thumbButton.addEventListener("click", function () {
+            thumbnaislWrapper.innerHTML = "";
+            loader.style.display = "block";
+            import("./index.js").then((res) => {
+                res.generateVideoThumbnails(selectedFile, parseInt(numberInput.value)).then((thumbArray) => {
+                    let thumbnailsImg = thumbArray.map((item) => {
+                        let img = document.createElement('img');
+                        img.src = item;
+                        img.alt = "";
+                        img.style.width = "200px";
+                        img.style.objectFit = "cover";
+                        img.style.margin = "10px";
+                        img.style.cursor = "pointer";
+                        img.addEventListener("click", function () {
+                            video.setAttribute("poster", item);
+                        })
+                        return img;
+                    })
+                    thumbnaislWrapper.innerHTML = "";
+                    loader.style.display = "none";
+                    thumbnailsImg.forEach((item) => {
+                        thumbnaislWrapper.appendChild(item);
+                    })
+                })
+            });
+
+        })
+
+        // generate thumbnails from url
+        urlbuttonwrapper.addEventListener("click", function () {
+            thumbnaislWrapper.innerHTML = "";
+            loader.style.display = "block";
+            video.style.width = "auto";
+            video.style.height = "auto"
+            video.style.transform = "scale(1)";
+            video.setAttribute("src", videoUrl.value);
+            import("./index.js").then((res) => {
+                res.generateVideoThumbnails(videoUrl.value, parseInt(numberInput.value), type = "url").then((thumbArray) => {
+                    let thumbnailsImg = thumbArray.map((item) => {
+                        let img = document.createElement('img');
+                        img.src = item;
+                        img.alt = "";
+                        img.style.width = "200px";
+                        img.style.objectFit = "cover";
+                        img.style.margin = "10px";
+                        img.style.cursor = "pointer";
+                        img.addEventListener("click", function () {
+                            video.setAttribute("poster", item);
+                        })
+                        return img;
+                    })
+                    thumbnaislWrapper.innerHTML = "";
+                    loader.style.display = "none";
+                    thumbnailsImg.forEach((item) => {
+                        thumbnaislWrapper.appendChild(item);
+                    })
+                }).catch((err) => {
+                    thumbnaislWrapper.innerHTML = "";
+                    loader.style.display = "none";
+                    let p = document.createElement("p")
+                    p.innerHTML = JSON.stringify(err);
+                    thumbnaislWrapper.appendChild(p);
+                })
+            });
+
+        });
+
+
+    </script>
+</body>
+
+</html>
