@@ -11,7 +11,7 @@ Generate `n` numbers of Image thumbnails of a video file.
 
 > ### [code sandbox example](https://codesandbox.io/s/generate-video-thumbnails-3qtubg)
 
-> ##### [How It works](./ALGORITHM.md)
+> ##### [Ok! but how does it works](./ALGORITHM.md)
 
 
 <!-- https://user-images.githubusercontent.com/24524924/160228836-547316dc-9ec0-4eca-aed1-09127db5de69.mp4 -->
