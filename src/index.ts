@@ -194,7 +194,6 @@ export const getVideoCover = (urlOfFIle: string, seekTo = 0.0): Promise<string> 
 }
 
 /**
- * This method may not work sometimes because some browser blocks browser fingerprinting
  * @param {string} urlOfFIle 
  * @param {number} videoTimeInSeconds 
  * @returns {string} base64 image string
