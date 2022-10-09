@@ -1,71 +1,68 @@
-import { generateVideoThumbnails, importFileandPreview } from '@rajesh896/video-thumbnails-generator';
-import React, { useEffect, useState } from 'react';
-import loadingSVG from '../assets/loading.svg';
-
+import useVideoThumbnailForm from "../hooks/useVideoThumbnailForm";
+import Thumbnails from "./Thumbnails";
 
 const VideoThumbnailsFromFile = () => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [numberOfThumbnails, setNumberOfThumbnails] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [thumbnails, setThumbnails] = useState<string[]>();
-  const [selectedThumbnail, setselectedThumbnail] = useState<string>();
-  const [videoPreview, setVideoPreview] = useState("");
+  const {
+    handleGenerateThumbnails,
+    handleInputFileChange,
+    handleLoadAssync,
+    handleNumberOfThumbnails,
+    inputUrl,
+    isError,
+    loadAssync,
+    numberOfThumbnails,
+    selectedThumbnail,
+    setSelectedThumbnail,
+    thumbnails,
+  } = useVideoThumbnailForm({
+    maxThumbnails: 20,
+    type: "file",
+  });
 
-  useEffect(() => {
-    if (selectedFile) {
-      setselectedThumbnail("")
-      setNumberOfThumbnails(0)
-      setThumbnails([])
-      importFileandPreview(selectedFile).then((url) => {
-        setVideoPreview(url)
-      })
-    }
-    return () => {
-      window.URL.revokeObjectURL(videoPreview)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFile])
-  
   return (
-    <div className='fromfile'>
-      {videoPreview && <div className="video text-center">
-        <video src={videoPreview} poster={selectedThumbnail || ""} controls></video>
-      </div>}
+    <div className="fromfile">
+      {inputUrl && (
+        <div className="video text-center">
+          <video
+            src={inputUrl}
+            poster={selectedThumbnail || ""}
+            controls
+          ></video>
+        </div>
+      )}
       <div className="formgroup">
-        <input type={"file"} onChange={(e) => {
-          if (e.target.files && e.target.files?.length! > 0 && e.target.files?.[0]?.type.includes("video")) {
-            setSelectedFile(e.target.files[0])
-          }
-        }}  accept="video/*"/>
-        <input type={"number"} placeholder="Amount of thumbnails"
-          onChange={(e) => {
-          if(parseInt( e.target.value) > 20) return
-            setNumberOfThumbnails(parseInt(e.target.value))
-          }}
-          max={"20"} value={numberOfThumbnails} />
-        <button onClick={() => {
-          if (selectedFile) {
-            setIsLoading(true);
-            generateVideoThumbnails(selectedFile, numberOfThumbnails, "file").then((res) => {
-              setIsLoading(false);
-              setThumbnails(res);
-            }).catch((Err) => {
-              console.log('Err', Err)
-              setIsLoading(false);
-            })
-          }
-        
-        }}
-        disabled={selectedFile ? false : true}
-        >Generate Thumbnails</button>
+        <input type="file" onChange={handleInputFileChange} accept="video/*" />
+        <input
+          type="number"
+          placeholder="Amount of thumbnails"
+          onChange={handleNumberOfThumbnails}
+          value={numberOfThumbnails}
+        />
+        <label>
+          <input
+            type="checkbox"
+            onChange={handleLoadAssync}
+            checked={loadAssync}
+          />{" "}
+          Load asynchronously
+        </label>
+        <button
+          onClick={handleGenerateThumbnails}
+          disabled={!(numberOfThumbnails && inputUrl)}
+        >
+          Generate Thumbnails
+        </button>
       </div>
       <div className="thumbnails-container">
-        {!isLoading ? thumbnails?.map((image, index) => {
-          return <img src={image} alt="thumbnails" className={`width-100 ${image === selectedThumbnail ? "active" : ""}`} style={{ maxWidth: 200 }} key={index} onClick={() => setselectedThumbnail(image)}/>
-        }):  <img src={loadingSVG} alt="" className='no-border'/>}
+        <Thumbnails
+          thumbnails={thumbnails}
+          selectedThumbnail={selectedThumbnail}
+          setSelectedThumbnail={setSelectedThumbnail}
+          isError={isError}
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default VideoThumbnailsFromFile
+export default VideoThumbnailsFromFile;
