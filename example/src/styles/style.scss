@@ -115,7 +115,7 @@ html {
                     }
                 }
                 input[type="number"] {
-                    width: 40%;
+                    width: 20%;
                     border: 1px dashed whitesmoke;
                     padding: 5px;
                     font-size: 16px;
@@ -131,6 +131,9 @@ html {
                     &:-moz-placeholder {
                         color: whitesmoke;
                     }
+                }
+                label {
+                    align-self: center;
                 }
                 button {
                     margin: 0;
