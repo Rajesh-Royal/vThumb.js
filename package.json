@@ -7,7 +7,7 @@
   "scripts": {
     "build:npm": "tsc",
     "minify:js": "uglifyjs ./lib/index.js --output ./lib/index.js",
-    "copy:minified:src": "uglifyjs ./lib/index.js --output ./example/src/components/index.js",
+    "copy:minified:src": "uglifyjs ./lib/index.js --output ./example/src/hooks/video-thumbnails-generator.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
