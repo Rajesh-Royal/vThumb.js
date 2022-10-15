@@ -1,8 +1,7 @@
 import { useState } from "react";
-import {
-  generateVideoThumbnails,
-  importFileandPreview,
-} from "./video-thumbnails-generator";
+
+const vThumb = require("./video-thumbnails-generator").default;
+const { generateVideoThumbnails, importFileandPreview } = vThumb;
 
 type useVideoThumbnailFormProps = {
   maxThumbnails: number;
@@ -43,7 +42,7 @@ const useVideoThumbnailForm = (props: useVideoThumbnailFormProps) => {
     if (selectedFile?.type.includes("video")) {
       clearForm();
 
-      importFileandPreview(selectedFile).then((url) => {
+      importFileandPreview(selectedFile).then((url: string) => {
         setInputFile(selectedFile);
         setInputUrl(url);
       });
@@ -77,10 +76,10 @@ const useVideoThumbnailForm = (props: useVideoThumbnailFormProps) => {
     setIsLoading(true);
 
     generateVideoThumbnails(input as any, numberOfThumbnails, type, callback)
-      .then((res) => {
+      .then((res: string[]) => {
         setThumbnails(res);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         setIsError(err);
       })
       .finally(() => {
