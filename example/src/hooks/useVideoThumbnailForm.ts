@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const vThumb = require("./video-thumbnails-generator").default;
-const { generateVideoThumbnails, importFileandPreview } = vThumb;
+import { generateVideoThumbnails, importFileandPreview } from "./video-thumbnails-generator";
+
 
 type useVideoThumbnailFormProps = {
   maxThumbnails: number;
