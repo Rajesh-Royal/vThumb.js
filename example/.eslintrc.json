@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "react-app",
+        "react-app/jest"
+    ],
+    "rules": {
+        "new-parens": [
+            "error",
+            "never"
+        ]
+    }
+}
