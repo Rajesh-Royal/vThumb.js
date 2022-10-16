@@ -4,8 +4,8 @@
         "module": "commonjs",
         "declaration": true,
         "outDir": "./lib",
-        "strict": true,
-        "removeComments": true
+        "removeComments": true,
+        "noImplicitUseStrict": true
     },
     "include": [
         "src"
